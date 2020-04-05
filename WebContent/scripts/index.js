@@ -11,13 +11,13 @@ $(document).ready(function() {
   $('#recommend-btn').click(loadRecommendedItems);
   $('#welcome-msg').html('Welcome, ' + user_fullname);
   $('#login-btn').click(login);
-  $('#logout-link').attr('href', devHost + '/logout');
+  $('#logout-link').attr('href', './logout');
   validateSession();
 });
 
 function validateSession() {
 
-  var url = devHost + './login';
+  var url ='./login';
   var req = null;
 
   showLoadingMessage('Validating session...');
@@ -180,7 +180,7 @@ function loadNearbyItems() {
   activeBtn('nearby-btn');
 
   // The request parameters
-  var url = devHost + './search';
+  var url = './search';
   var params = 'user_id=' + user_id + '&lat=' + lat + '&lon=' + lng;
   // var req = JSON.stringify({});
   var req = null;
@@ -214,7 +214,7 @@ function loadFavoriteItems() {
   activeBtn('fav-btn');
 
   // The request parameters
-  var url = devHost + './history';
+  var url = './history';
   var params = 'user_id=' + user_id;
   // var req = JSON.stringify({});
   var req = null;
@@ -244,7 +244,7 @@ function loadRecommendedItems() {
   activeBtn('recommend-btn');
 
   // The request parameters
-  var url = devHost + './recommendation';
+  var url =  './recommendation';
   var params = 'user_id=' + user_id + '&lat=' + lat + '&lon=' + lng;
 
   // var req = JSON.stringify({});
@@ -289,7 +289,7 @@ function changeFavoriteItem(item_id) {
   console.log("fav", favorite);
 
   // The request parameters
-  var url = devHost + './history';
+  var url = './history';
   var req = JSON.stringify({
     user_id: user_id,
     favorite: [item_id]
@@ -325,7 +325,7 @@ function login() {
 
 
   // The request parameters
-  var url = devHost + './login';
+  var url = './login';
   var req = JSON.stringify({
     user_id: username,
     password: password
