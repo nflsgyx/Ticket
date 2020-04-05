@@ -6,7 +6,6 @@ var lat = 37.38;
 var devHost = 'http://localhost:8080/Ticket/'
 
 $(document).ready(function() {
-  // initGeoLocation();
   $('#nearby-btn').click(loadNearbyItems);
   $('#fav-btn').click(loadFavoriteItems);
   $('#recommend-btn').click(loadRecommendedItems);
@@ -117,8 +116,7 @@ function getLocationFromIP() {
 /**
  * A helper function that makes a navigation button active
  *
- * @param btnId -
- *            The id of the navigation button
+ * @param btnId - The id of the navigation button
  */
 function activeBtn(btnId) {
   $('.main-nav-btn').removeClass('active');
