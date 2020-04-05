@@ -43,6 +43,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
  
 /**
  * Servlet Filter implementation class CORSFilter
@@ -77,15 +78,15 @@ public class SimpleCORSFilter implements Filter {
         // Authorize (allow) all domains to consume the content
         ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8887");
         ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Credentials", "true");
-        ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
+        ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST, DELETE");
         ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Headers", "Cache-Control, Pragma, Content-Type, X-Requested-With, Accept, Referer, Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, dsName, User-Agent");
+        ((HttpServletResponse) servletResponse).setHeader("Access-Control-Expose-Headers", "Set-Cookie");
         ((HttpServletResponse) servletResponse).setHeader("Access-Control-Max-Age", "3600");
-        ((HttpServletResponse) servletResponse).setHeader("Content-Type","application/json; charset=utf-8");
+//        ((HttpServletResponse) servletResponse).setHeader("Content-Type","application/json; charset=utf-8");
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
  
         // For HTTP OPTIONS verb/method reply with ACCEPTED status code -- per CORS handshake
         if (request.getMethod().equals("OPTIONS")) {
-        	System.out.println("abcdefg");
             resp.setStatus(HttpServletResponse.SC_ACCEPTED);
             return;
         }

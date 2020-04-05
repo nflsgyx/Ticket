@@ -108,8 +108,12 @@ public class TicketMasterClient {
 				builder.setUrl(event.getString("url"));
 			}
 			if (!event.isNull("distance")) {
-
 				builder.setDistance(event.getDouble("distance"));
+			}
+			if (!event.isNull("dates")) {
+				JSONObject timeJsonObject = event.getJSONObject("dates").getJSONObject("start");
+				builder.setDate(timeJsonObject.getString("localDate"));
+				builder.setLocalTime(timeJsonObject.getString("localTime"));
 			}
 
 			builder.setAddress(getAddress(event));

@@ -68,7 +68,7 @@ public class MySQLConnection implements DBConnection {
 	}
 
 	@Override
-	public void unsetFavoriteItems(String userId, List<String> itemIds) { // TODO Auto-generated method stub
+	public void unsetFavoriteItems(String userId, List<String> itemIds) { 
 		if (conn == null) {
 			System.err.println("DB connection failed");
 			return;
@@ -151,6 +151,8 @@ public class MySQLConnection implements DBConnection {
 					builder.setCategories(getCategories(itemId));
 					builder.setDistance(rs.getDouble("distance"));
 					builder.setRating(rs.getDouble("rating"));
+					builder.setDate(rs.getString("date"));
+					builder.setLocalTime(rs.getString("local_time"));
 
 					favoriteItems.add(builder.build());
 
@@ -216,7 +218,7 @@ public class MySQLConnection implements DBConnection {
 
 		try {
 
-			String sql = "INSERT IGNORE INTO items VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT IGNORE INTO items VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, item.getItemId());
 			ps.setString(2, item.getName());
@@ -225,6 +227,8 @@ public class MySQLConnection implements DBConnection {
 			ps.setString(5, item.getImageUrl());
 			ps.setString(6, item.getUrl());
 			ps.setDouble(7, item.getDistance());
+			ps.setString(8, item.getDate());
+			ps.setString(9, item.getLocalTime());
 			ps.execute();
 
 			sql = "INSERT IGNORE INTO categories VALUES(?, ?)";
@@ -290,7 +294,26 @@ public class MySQLConnection implements DBConnection {
 			System.out.println(e.getMessage());
 		}
 		return false;
+	}
 
+	@Override
+	public boolean registerUser(String userId, String password, String firstname, String lastname) {
+		if (conn == null) {
+			System.err.println("DB connection failed");
+			return false;
+		}
+		try {
+			String sql = "INSERT IGNORE INTO users VALUES (?, ?, ?, ?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, userId);
+			ps.setString(2, password);
+			ps.setString(3, firstname);
+			ps.setString(4, lastname);
+			return ps.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

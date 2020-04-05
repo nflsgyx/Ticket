@@ -13,6 +13,8 @@ public class Item {
 	private String name;
 	private double rating;
 	private String address;
+	private String date;
+	private String localTime;
 	private Set<String> categories;
 	private String imageUrl;
 	private String url;
@@ -49,6 +51,14 @@ public class Item {
 	public double getDistance() {
 		return distance;
 	}
+	
+	public String getDate() {
+		return date;
+	}
+	
+	public String getLocalTime() {
+		return localTime;
+	}
 
 	public JSONObject toJSONObject() {
 
@@ -63,6 +73,8 @@ public class Item {
 			obj.put("image_url", imageUrl);
 			obj.put("url", url);
 			obj.put("distance", distance);
+			obj.put("date", date);
+			obj.put("local_time", localTime);
 
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -81,6 +93,8 @@ public class Item {
 		private String imageUrl;
 		private String url;
 		private double distance;
+		private String date;
+		private String localTime;
 
 		public Item build() {
 			return new Item(this);
@@ -125,6 +139,17 @@ public class Item {
 			this.distance = distance;
 			return this;
 		}
+		
+		public ItemBuilder setDate(String date) {
+			this.date = date;
+			return this;
+		}
+		
+		public ItemBuilder setLocalTime(String localTime) {
+			this.localTime = localTime;
+			return this;
+		}
+		
 	}
 
 	private Item(ItemBuilder builder) {
@@ -136,5 +161,7 @@ public class Item {
 		this.imageUrl = builder.imageUrl;
 		this.url = builder.url;
 		this.distance = builder.distance;
+		this.localTime = builder.localTime;
+		this.date = builder.date;
 	}
 }

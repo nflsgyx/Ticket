@@ -37,7 +37,7 @@ public class MySQLTableCreation {
 			// Step 3 Create new tables
 			sql = "CREATE TABLE items (" + "item_id VARCHAR(255) NOT NULL," + "name VARCHAR(255)," + "rating FLOAT,"
 					+ "address VARCHAR(255)," + "image_url VARCHAR(255)," + "url VARCHAR(255)," + "distance FLOAT,"
-					+ "PRIMARY KEY (item_id)" + ")";
+					+ "date VARCHAR(255)," + "local_time VARCHAR(255)," + "PRIMARY KEY (item_id)" + ")";
 			statement.executeUpdate(sql);
 
 			sql = "CREATE TABLE users (" + "user_id VARCHAR(255) NOT NULL," + "password VARCHAR(255) NOT NULL,"
@@ -53,9 +53,11 @@ public class MySQLTableCreation {
 					+ "PRIMARY KEY (user_id, item_id)," + "FOREIGN KEY (user_id) REFERENCES users(user_id),"
 					+ "FOREIGN KEY (item_id) REFERENCES items(item_id)" + ")";
 			statement.executeUpdate(sql);
-			
-			// Step 4: insert fake user 
-			sql = "INSERT INTO users VALUES('1111', '3229c1097c00d497a0fd282d586be050', 'John', 'Smith')"; 
+
+			// Step 4: insert fake user
+			sql = "INSERT INTO users VALUES('demo', '67540ee3374a6402d2a2394ab0154a8f', 'James', 'Guo')";
+			statement.executeUpdate(sql);
+			sql = "INSERT INTO users VALUES('uni', '67540ee3374a6402d2a2394ab0154a8f', 'Uni', 'S')";
 			statement.executeUpdate(sql);
 
 			conn.close();

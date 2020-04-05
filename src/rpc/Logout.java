@@ -34,7 +34,7 @@ public class Logout extends HttpServlet {
 		if (session != null) {
 			session.invalidate();
 		}
-		response.sendRedirect("http://127.0.0.1:8887/");
+		response.sendRedirect("./index.html");
 	}
 
 	/**
