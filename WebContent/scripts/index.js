@@ -5,12 +5,6 @@ var lat = 37.38;
 
 var devHost = 'http://localhost:8080/Ticket/'
 
-// $.ajaxSetup({
-//   xhrFields: {
-//     withCredentials: true
-//   }
-// });
-
 $(document).ready(function() {
   // initGeoLocation();
   $('#nearby-btn').click(loadNearbyItems);
@@ -114,38 +108,6 @@ function getLocationFromIP() {
       console.warn('Getting location by IP failed.');
     }
 }, "jsonp")
-
-  // $.ajax({
-  //   type: 'GET',
-  //   url: url,
-  //   dataType: "json",
-  //   contentType: "application/json",
-  //   success: function(result) {
-  //     if ('loc' in result) {
-  //       var loc = result.loc.split(',');
-  //       lat = loc[0];
-  //       lng = loc[1];
-  //     } else {
-  //       console.warn('Getting location by IP failed.');
-  //     }
-  //   },
-  //   error: function(){
-  //       console.warn('Getting location by IP failed.');
-  //   }
-  // });
-
-  // ajax('GET', url, req, function(res) {
-  //     // console.log(res)
-  //     var result = res;
-  //     if ('loc' in result) {
-  //         var loc = result.loc.split(',');
-  //         lat = loc[0];
-  //         lng = loc[1];
-  //     } else {
-  //         console.warn('Getting location by IP failed.');
-  //     }
-  //     loadNearbyItems();
-  // });
 }
 
 // -----------------------------------
@@ -177,28 +139,6 @@ function showErrorMessage(msg) {
     msg + '</p>');
 }
 
-/**
- * A helper function that creates a DOM element <tag options...>
- *
- * @param tag
- * @param options
- * @returns
- */
-// function $(tag, options) {
-//     if (!options) {
-//         return document.getElementById(tag);
-//     }
-
-//     var element = document.createElement(tag);
-
-//     for (var option in options) {
-//         if (options.hasOwnProperty(option)) {
-//             element[option] = options[option];
-//         }
-//     }
-
-//     return element;
-// }
 
 function hideElement(element) {
   $(element).hide();
@@ -210,34 +150,6 @@ function showElement(element, style) {
 }
 
 function ajax(method, url, data, callback, errorHandler) {
-  // var xhr = new XMLHttpRequest();
-
-  // xhr.withCredentials = false;
-
-  // xhr.open(method, url, true);
-
-  // xhr.onload = function() {
-  //     // if (xhr.status === 200) {
-  //         callback(xhr.responseText);
-  //     // } else {
-  //     //     errorHandler();
-  //     // }
-  // };
-
-  // xhr.onerror = function() {
-  //     console.error("The request couldn't be completed.");
-  //     errorHandler();
-  // };
-
-
-
-  // if (data === null) {
-  //     xhr.send();
-  // } else {
-  //     // xhr.setRequestHeader("Content-Type",
-  //     //     "application/json;charset=utf-8");
-  //     xhr.send(data);
-  // }
   $.ajax({
     type: method,
     url: url,
