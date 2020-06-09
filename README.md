@@ -21,7 +21,7 @@
 - Deployed to AmazonEC2 to handle 150 QPS (tested by Apache JMeter).
 
 ## DEMO
-http:/ticket.yuxuan.site
+http://ticket.yuxuan.site
 - username: demo
 - password: 123456
 
